@@ -2,6 +2,8 @@ package com.funboy.初级.数组;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * @Author: 王帆
  * @CreateTime: 2018-11-15 16:39
@@ -24,7 +26,10 @@ public class 从排序数组中删除重复项 {
     @Test
     public void go() {
 
-        assert removeDuplicates(null) == 1;
+        int[] nums = {};
+        int i = removeDuplicates(nums);
+        System.out.println(i);
+        System.out.println(Arrays.toString(nums));
     }
 
     @Test
@@ -32,38 +37,25 @@ public class 从排序数组中删除重复项 {
 
     }
 
+
     public int removeDuplicates(int[] nums) {
-        int len = nums.length;
+        if(nums.length == 0){
+            return 0;
+        }
         int left = 0;
         int right = 1;
         int temp;
-        if (len <= 1) {
-            return nums.length;
-        }
-        if (len == 2) {
-            if (nums[0] == nums[1]) {
-                return 2;
+        while (right < nums.length) {
+            if (nums[left] >= nums[right]) {
+                right++;
             } else {
-                return 1;
+                temp = nums[right++];
+                nums[++left] = temp;
             }
         }
-
-        while (right <= nums.length) {
-            if(nums[left] < nums[right]){
-                left++;
-                right++;
-            }else{
-                right++;
-                if(nums[left] < nums[right]){
-                    left++;
-                    right++;
-                }
-            }
-
-        }
-
-
-        return 0;
+        return left + 1;
     }
+
+
 }
 
