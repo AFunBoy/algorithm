@@ -1,5 +1,7 @@
 package com.funboy.初级.数组;
 
+import org.junit.Test;
+
 /**
  * @Author: 王帆
  * @CreateTime: 2018-11-19 15:28
@@ -9,6 +11,7 @@ package com.funboy.初级.数组;
  * 输出：1->1->2->3->4->4
  */
 public class 合并两个有序链表 {
+
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode head = new ListNode(-1);
         ListNode cur = head;

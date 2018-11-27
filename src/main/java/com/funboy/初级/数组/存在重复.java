@@ -1,5 +1,12 @@
 package com.funboy.初级.数组;
 
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @Author: 王帆
  * @CreateTime: 2018-11-21 16:04
@@ -11,4 +18,33 @@ package com.funboy.初级.数组;
  * 输出: false
  */
 public class 存在重复 {
+    @Test
+    public void go() {
+        boolean b = containsDuplicate(new int[]{7, 6, 1, 5, 4, 1});
+        System.out.println(b);
+    }
+
+    public boolean containsDuplicate(int[] nums) {
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[j] == nums[i]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean containsDuplicate1(int[] nums) {
+
+        for (int i = 1; i < nums.length; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (nums[i] == nums[j]) {
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
 }
