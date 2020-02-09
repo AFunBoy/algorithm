@@ -1,7 +1,8 @@
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -13,9 +14,18 @@ public class test {
 
     @Test
     public void test() {
-        System.out.println(14%7);
+        HashMap<Object, Object> map = new HashMap<>();
+        fullMap(map);
+        System.out.println(JSONObject.toJSONString(map));
+    }
+
+    private void changeName(Person person) {
+        person.setName("abc");
+    }
 
 
+    private void fullMap(Map map) {
+        map.put("abc", "abc");
     }
 
     class Person {
@@ -36,7 +46,7 @@ public class test {
             return age;
         }
 
-        public  void setAge(int age) {
+        public void setAge(int age) {
             this.age = age;
         }
 
