@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.SimpleFormatter;
 import java.util.stream.Collectors;
 
 /**
@@ -52,14 +51,16 @@ public class XmlReader {
     }
 
     public static void main(String[] args) throws Exception {
-
-        String str1 = "http://10.5.144.42:8080/cat/r/e?op=history&domain=UmeSMSServer&ip=All&date=";
-        String str2 = "&reportType=month&step=-1&type=&ip=All&forceDownload=xml";
+//
+//        String str1 = "http://10.5.144.42:8080/cat/r/e?op=history&domain=UmeSMSServer&ip=All&date=";
+//        String str2 = "&reportType=month&step=-1&type=&ip=All&forceDownload=xml";
         List<String> urlList = new ArrayList<>();
-        for (int i = 0; i < 12; i++) {
-            urlList.add(str1 + LocalDate.of(2019, 02, 01).plusMonths(i).toString().replace("-", "") + str2);
-        }
+//        for (int i = 0; i < 12; i++) {
+//            urlList.add(str1 + LocalDate.of(2019, 02, 01).plusMonths(i).toString().replace("-", "") + str2);
+//        }
 
+        String str3 = "http://10.5.144.42:8080/cat/r/e?op=history&domain=UmeSMSServer&date=20200311&ip=All&reportType=day&type=UmeSMSServer.SMSRequest.source&sort=total&startDate=20200311&endDate=20200312&forceDownload=xml";
+        urlList.add(str3);
         HashMap<String, HashMap<String, Object>> data = new HashMap<>();
         HashSet<String> uniqueKey = new HashSet<>();
         XmlReader reader = new XmlReader();
