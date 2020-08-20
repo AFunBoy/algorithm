@@ -1,6 +1,5 @@
 package com.umetrip.statistic;
 
-import org.apache.commons.lang.time.DateUtils;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -79,6 +78,7 @@ public class ExcelUtil {
                         break;
                     case XSSFCell.CELL_TYPE_BLANK:
                         //空单元格
+                        value = "unknown";
                         break;
                     default:
                         value = cell.toString();
