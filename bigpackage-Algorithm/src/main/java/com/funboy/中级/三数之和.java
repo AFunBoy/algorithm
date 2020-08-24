@@ -1,23 +1,36 @@
 package com.funboy.中级;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class 三数之和 {
     public List<List<Integer>> threeSum(int[] nums) {
-        nums = sort(nums);
-        return null;
-    }
-
-    public int[] sort(int[] sums) {
-        for (int i = 0; i < sums.length - 1; i++) {
-            for (int j = 0; j < sums.length - 1 - i; j++) {
-                if (sums[j] > sums[j + 1]) {
-                    int temp = sums[j];
-                    sums[j] = sums[j + 1];
-                    sums[j + 1] = temp;
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        int i = 0;
+        int j = nums.length;
+        for (; i < nums.length && i < j; i++) {
+            for (int k = i + 1; k < j; k++) {
+                if (i >= 0) {
+                    return result;
+                }
+                int sum = nums[i] + nums[j];
+                if (sum + nums[k] > 0) {
+                    return result;
+                }
+                if (sum + nums[k] == 0) {
+                    ArrayList<Integer> temp = new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[j]);
+                    temp.add(nums[k]);
+                    result.add(temp);
                 }
             }
         }
-        return sums;
+
+        return result;
     }
+
+
 }
