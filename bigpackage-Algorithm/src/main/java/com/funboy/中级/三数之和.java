@@ -8,47 +8,53 @@ import java.util.List;
 
 public class 三数之和 {
     public static List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
-        int i = 0;
-        int j = nums.length - 1;
-        for (; i < nums.length - 1 && i < j; i++) {
-            //当前的最小值已经大于0 直接return
-            if (nums[i] > 0) {
-                return result;
-            }
-            //当前首尾之和
-            int sum = nums[i] + nums[j];
-            for (int k = i + 1; k < j; k++) {
-                //首尾之和>0 大数指针-1 跳出内层循环 外层+1
-                int tempSum = sum + nums[k];
-                if (tempSum > 0) {
-                    j--;
-                    break;
-                } else {
-                    //首尾之和小于0
-                    if (tempSum + nums[k] < 0) {
-                        continue;
-                    } else if (tempSum + nums[k] == 0) {
-                        ArrayList<Integer> temp = new ArrayList<>();
-                        temp.add(nums[i]);
-                        temp.add(nums[j]);
-                        temp.add(nums[k]);
-                        result.add(temp);
-                        break;
-                    } else {
-                        break;
-                    }
-                }
+        //最外层 从最小的负数一直到最大的负数
+        int arrLength = nums.length - 1;
+        for (int i = 0; i < arrLength && nums[i] < 0; i++) {
+            int currentMin = nums[i];
+            int target = 0 - currentMin;
+            //两个滑动指针 left 和 right
+            int left = i + 1;
+            int right = arrLength;
+            while (left < right) {
 
+                if (nums[left] + nums[right] == target) {
+                    ArrayList<Integer> objects = new ArrayList<>();
+                    objects.add(nums[i]);
+                    objects.add(nums[left]);
+                    objects.add(nums[right]);
+                    result.add(objects);
+                }
+                if (left + 1 <= arrLength && nums[left] == nums[left + 1]) {
+                    left++;
+                }
+                if (right - 1 >= 0 && nums[right] == nums[right - 1]) {
+                    right--;
+                }
             }
+            //左右两个数相加 再与当前最小值相加，如果等于0 记录
+            //如果左右两个数相加 加上当前最小值 大于0了 右指针--
+            //如果左右两个数相加 加上当前最小值 小于零  左指针++
         }
+
 
         return result;
     }
 
+
+    private static void addResult(List<List<Integer>> result, int i, int j, int k, int[] nums) {
+        ArrayList<Integer> temp = new ArrayList<>();
+        temp.add(nums[i]);
+        temp.add(nums[j]);
+        temp.add(nums[k]);
+        result.add(temp);
+    }
+
     public static void main(String[] args) {
         int[] input = new int[]{-1, 0, 1, 2, -1, -4};
+        Arrays.sort(input);
+        System.out.println(Arrays.toString(input));
         List<List<Integer>> result = threeSum(input);
         System.out.println(JSONObject.toJSONString(result));
     }
