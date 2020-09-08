@@ -26,6 +26,7 @@ public class 三数之和 {
                     objects.add(nums[right]);
                     result.add(objects);
                 }
+                //todo 把2个if换成while true 条件是if的条件
                 if (left + 1 <= arrLength && nums[left] == nums[left + 1]) {
                     left++;
                 }
