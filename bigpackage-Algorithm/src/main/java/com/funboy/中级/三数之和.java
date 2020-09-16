@@ -12,31 +12,41 @@ public class 三数之和 {
         //最外层 从最小的负数一直到最大的负数
         int arrLength = nums.length - 1;
         for (int i = 0; i < arrLength && nums[i] < 0; i++) {
-            int currentMin = nums[i];
-            int target = 0 - currentMin;
+            if (nums[i] > 0) break;
+            int target = 0 - nums[i];
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
             //两个滑动指针 left 和 right
             int left = i + 1;
             int right = arrLength;
-            while (left < right) {
 
+            while (left < right) {
                 if (nums[left] + nums[right] == target) {
                     ArrayList<Integer> objects = new ArrayList<>();
                     objects.add(nums[i]);
                     objects.add(nums[left]);
                     objects.add(nums[right]);
                     result.add(objects);
-                }
-                //todo 把2个if换成while true 条件是if的条件
-                if (left + 1 <= arrLength && nums[left] == nums[left + 1]) {
+                    while (left < right && (nums[left] == nums[left + 1])) {
+                        left++;
+                    }
+                    while (left < right && (nums[right] == nums[right - 1])) {
+                        right--;
+                    }
                     left++;
-                }
-                if (right - 1 >= 0 && nums[right] == nums[right - 1]) {
                     right--;
                 }
+                //两个指针的数字之和大于target 右指针减一
+                if (nums[left] + nums[right] > target) {
+                    right--;
+                }
+                if (nums[left] + nums[right] < target) {
+                    left++;
+                }
+
+
             }
-            //左右两个数相加 再与当前最小值相加，如果等于0 记录
-            //如果左右两个数相加 加上当前最小值 大于0了 右指针--
-            //如果左右两个数相加 加上当前最小值 小于零  左指针++
         }
 
 
@@ -53,7 +63,7 @@ public class 三数之和 {
     }
 
     public static void main(String[] args) {
-        int[] input = new int[]{-1, 0, 1, 2, -1, -4};
+        int[] input = new int[]{-1, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 32, -1, -4};
         Arrays.sort(input);
         System.out.println(Arrays.toString(input));
         List<List<Integer>> result = threeSum(input);
