@@ -6,6 +6,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 三数之和：
+ * 1.排序，获取最小值，如果最小值大于零，直接braek，如果最小值和上一个值相同，continue,进入下一循环，i++
+ * 2.获取当前最小值的情况下，和目标值的差值target
+ * 3.计算当前左指针和右指针的和与target的值进行比较，如果相等，记录当前值，左指针比较下一个值和当前左指针的值是否相等，如果相等，左指针指到和当前值相等的最右一个值，右指针同理，指向当前值最左的这个值，比如 有2,2,2,2，那么左指针从第一个2指向最后一个2，右指针同理
+ * 4.左右指针自增\自减，如果左指针小于右指针，进行上述循环
+ * 5.如果左右指针的和大于target，右指针自减
+ * 6.如果左右指针的和小于target，左指针自增
+ */
 public class 三数之和 {
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
@@ -23,11 +32,7 @@ public class 三数之和 {
 
             while (left < right) {
                 if (nums[left] + nums[right] == target) {
-                    ArrayList<Integer> objects = new ArrayList<>();
-                    objects.add(nums[i]);
-                    objects.add(nums[left]);
-                    objects.add(nums[right]);
-                    result.add(objects);
+                    addResult(result, i, left, right,nums);
                     while (left < right && (nums[left] == nums[left + 1])) {
                         left++;
                     }
