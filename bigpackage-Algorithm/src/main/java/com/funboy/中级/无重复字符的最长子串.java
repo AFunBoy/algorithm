@@ -42,7 +42,6 @@ public class 无重复字符的最长子串 {
 
             max = Math.max(max, end - start + 1);
             map.put(c, end + 1);
-
         }
         return max;
     }
