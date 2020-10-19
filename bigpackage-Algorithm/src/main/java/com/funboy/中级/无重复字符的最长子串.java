@@ -1,5 +1,7 @@
 package com.funboy.中级;
 
+import java.util.HashMap;
+
 /**
  * @ClassName 无重复字符的最长子串
  * @Description 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
@@ -26,11 +28,22 @@ package com.funboy.中级;
  */
 public class 无重复字符的最长子串 {
     public static void main(String[] args) {
-
+        System.out.println(solution("ab"));
     }
 
-    public static String solution(String s) {
-;
-        return null;
+    public static int solution(String s) {
+        int max = 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        for (int start = 0, end = 0; end < s.length(); end++) {
+            char c = s.charAt(end);
+            if (map.containsKey(c)) {
+                start = Math.max(map.get(c), start);
+            }
+
+            max = Math.max(max, end - start + 1);
+            map.put(c, end + 1);
+
+        }
+        return max;
     }
 }
