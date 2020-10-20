@@ -1,4 +1,4 @@
-package com.funboy.中级;
+package com.funboy.中级.数组;
 
 import java.util.HashMap;
 

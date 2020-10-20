@@ -1,4 +1,4 @@
-package com.funboy.中级;
+package com.funboy.中级.数组;
 
 /**
  * 给定一个未排序的数组，判断这个数组中是否存在长度为 3 的递增子序列。
