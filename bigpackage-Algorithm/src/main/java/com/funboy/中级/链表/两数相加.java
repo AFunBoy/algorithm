@@ -34,23 +34,38 @@ public class 两数相加 {
      * }
      */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return null;
+        int num = 0;
+        ListNode pre = new ListNode(0);
+        ListNode current = new ListNode();
+        pre.next = current;
+        do {
+            int sum = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + num;
+            num = sum / 10;
+            sum = sum % 10;
+            current.val = sum;
+            l1 = (l1 == null ? l1 : l1.next);
+            l2 = (l2 == null ? l2 : l2.next);
+            if (l1 != null || l2 != null || num != 0) {
+                current.next = new ListNode(0);
+                current = current.next;
+            }
+
+        } while (l1 != null || l2 != null || num != 0);
+
+        return pre.next;
+
+    }
+
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(1);
+        l1.next = new ListNode(2);
+        ListNode l2 = new ListNode(3);
+        l2.next = new ListNode(4);
+        ListNode x = new 两数相加().addTwoNumbers(l1, l2);
+        while (x != null) {
+            System.out.println(x.val);
+            x = x.next;
+        }
     }
 }
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
